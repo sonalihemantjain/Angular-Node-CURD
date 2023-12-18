@@ -1,0 +1,4 @@
+Install npm i 
+to run npm start
+
+To generate swagger npm run swagger-autogen
