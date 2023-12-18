@@ -1,0 +1,6 @@
+{
+    "getAllData" : "SELECT * FROM TestSonali1.dbo.employees_node",
+    "addNewEmp" :"INSERT INTO TestSonali1.dbo.employees_node (name,employee_code,salary) VALUES (@name,@employee_code,@salary) ",
+    "deleteEmp" : "DELETE FROM TestSonali1.dbo.employees_node WHERE id =@id",
+    "updateEmp" : "UPDATE TestSonali1.dbo.employees_node SET name = @newName WHERE id = @id"
+}

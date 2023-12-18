@@ -1,0 +1,82 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "My User Project CRUD",
+        "description": "My User Project Application API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Emp",
+            "description": "API for Emp in the system"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/api/getAllData": {
+            "get": {
+                "tags": [
+                    "Emp"
+                ],
+                "summary": "Get all data in system",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/addNewEmp": {
+            "post": {
+                "tags": [
+                    "Emp"
+                ],
+                "parameters": [
+                    {
+                        "name": "Emp",
+                        "in": "body",
+                        "description": "Emp that we want to create",
+                        "schema": {
+                            "required": [
+                                "name",
+                                "employee_code",
+                                "salary"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "employee_code": {
+                                    "type": "string"
+                                },
+                                "salary": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "summary": "Add new emplooyee",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    }
+}
