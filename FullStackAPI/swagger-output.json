@@ -85,7 +85,7 @@
       }
     },
     "/api/updateEmp": {
-      "delete": {
+      "put": {
         "description": "",
         "parameters": [
           {
@@ -104,6 +104,19 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/getAllDataWithSp": {
+      "get": {
+        "description": "",
         "responses": {
           "200": {
             "description": "OK"
