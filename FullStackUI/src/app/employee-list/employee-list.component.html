@@ -1,0 +1,31 @@
+<div class="row mt-5">
+    <div class="col-md-12 ">
+        <h1>Emplyee List</h1>
+        <div class="my-3">
+            <a class="btn btn-primary" [routerLink]="['/add-employee']">Add User</a>
+        </div>
+        <table class="table ">
+            <thead>
+             <tr>
+                <th>Sr No</th>
+                <th>Employee Code</th>
+                <th>Employee Name</th>
+                <th> Salary</th>
+                <th></th>
+             </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employee of employeeList;let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{employee.employee_code}}</td>
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.salary}}</td>
+                    <td class="d-flex align-item-center justify-content-center">
+                        <button class="btn btn-warning text-light" [routerLink]="['../add-employee',employee.id]">Update</button>
+                        <button class="btn btn-danger ms-3" (click)="deleteEmployee(employee.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
