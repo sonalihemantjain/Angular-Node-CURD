@@ -82,6 +82,7 @@ class EmpController {
           .request()
           .input("newName", sql.VarChar, req.body.name)
           .input("id", sql.Int, req.body.id)
+          .input("newSalary", sql.Int, req.body.salary)
           .query(queries.updateEmp);
         res.json(result);
       } else {

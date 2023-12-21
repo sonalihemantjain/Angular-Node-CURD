@@ -99,6 +99,9 @@
                 },
                 "id": {
                   "example": "any"
+                },
+                "salary": {
+                  "example": "any"
                 }
               }
             }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { EmployeeService } from '../employee.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface EmployeeModel {
   name: string;
@@ -16,19 +16,24 @@ export interface EmployeeModel {
 })
 export class AddEmployeeComponent implements OnInit {
   testForm?: FormGroup;
-  employeeId = null;
+  employeeId = 0;
+
   constructor(
     private emplyeeService: EmployeeService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
-  api = this.emplyeeService.baseApiUrl;
+
   ngOnInit(): void {
     this.setForm();
 
     this.route.paramMap.subscribe((paramsData) => {
       if (paramsData) {
         const id = paramsData.get('id');
-        this.employeeId = id;
+        this.employeeId = +id;
+
+        this.testForm.get('employee_code').disable();
+
         this.emplyeeService.getEmployeeList().subscribe((res) => {
           const updateEmployee = res.filter((x) => x.id === +id);
           if (updateEmployee.length > 0) {
@@ -57,7 +62,7 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.employeeId === null) {
+    if (this.employeeId === 0) {
       let empInfo = {
         employee_code: this.testForm.get('employee_code').value,
         name: this.testForm.get('name').value,
@@ -65,17 +70,17 @@ export class AddEmployeeComponent implements OnInit {
       };
 
       this.emplyeeService.addEmployee(empInfo).subscribe(() => {
-        this.testForm.reset();
+        this.router.navigate(['/employee-list']);
       });
-      
-    } else if (this.employeeId !== null) {
+    } else if (this.employeeId !== 0) {
       let updateEmpInfo = {
         name: this.testForm.get('name').value,
         id: this.testForm.get('id').value,
+        salary: this.testForm.get('salary').value,
       };
 
       this.emplyeeService.updateEmployee(updateEmpInfo).subscribe(() => {
-        this.testForm.reset();
+        this.router.navigate(['/employee-list']);
       });
     }
   }
